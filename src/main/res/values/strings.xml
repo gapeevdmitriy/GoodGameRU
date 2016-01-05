@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">GoodGameRu</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="path_to_goodgame_rss">http://goodgame.ru/rss</string>
+</resources>
