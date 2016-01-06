@@ -1,10 +1,9 @@
 package com.example.dgapeev.goodgameru;
 
+import android.app.ListActivity;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Xml;
-import android.widget.TextView;
 
 import com.example.dgapeev.vo.RssItem;
 
@@ -22,8 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity {
-    TextView mRssFeed;
+public class MainActivity extends ListActivity {
     String pathToGoodgameRss = "http://goodgame.ru/rss";
 
 
@@ -31,19 +29,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mRssFeed = (TextView) findViewById(R.id.rss_feed);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-
-
         new GetGoodgameRURssFeedTask().execute(pathToGoodgameRss);
+
     }
 
 
     private class GetGoodgameRURssFeedTask extends AsyncTask<String, Void, List<RssItem>> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
 
         @Override
         protected List<RssItem> doInBackground(String... params) {
@@ -58,7 +59,8 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(List<RssItem> rssItems) {
-            super.onPostExecute(rssItems);
+            MySimpleArrayAdapter adapter = new MySimpleArrayAdapter(MainActivity.this, rssItems);
+            setListAdapter(adapter);
         }
     }
 
@@ -119,6 +121,9 @@ public class MainActivity extends AppCompatActivity {
                 String dateParseFormat = "cc, dd MMM yyyy kk:mm:ss Z";
                 SimpleDateFormat sdf = new SimpleDateFormat(dateParseFormat);
                 rssItem.setDatePub(sdf.parse(tagText));
+                break;
+            case "description":
+                rssItem.setDescription(tagText);
                 break;
         }
     }

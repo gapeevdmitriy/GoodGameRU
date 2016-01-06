@@ -6,6 +6,7 @@ public class RssItem {
     private String url;
     private String title;
     private Date datePub;
+    private String description;
 
 
     public String getTitle() {
@@ -30,5 +31,13 @@ public class RssItem {
 
     public void setDatePub(Date datePub) {
         this.datePub = datePub;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
