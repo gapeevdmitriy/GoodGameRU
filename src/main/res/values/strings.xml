@@ -4,4 +4,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="path_to_goodgame_rss">http://goodgame.ru/rss</string>
+    <string name="rssItem">rssItem</string>
+    <string name="strNoItemsFound">News list is empty</string>
 </resources>

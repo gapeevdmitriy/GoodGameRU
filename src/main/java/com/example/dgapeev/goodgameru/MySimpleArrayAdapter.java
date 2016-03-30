@@ -37,4 +37,11 @@ public class MySimpleArrayAdapter extends ArrayAdapter<RssItem> {
         return rowView;
     }
 
+
+    @Override
+    public RssItem getItem(int position) {
+        return values.get(position);
+    }
+
+
 }
